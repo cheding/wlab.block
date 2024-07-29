@@ -1,0 +1,18 @@
+Package: wlab.block
+Type: Package
+Title: A package for processing DMS blocks data for daily use in
+        wenglab
+Version: 0.0.0.1
+Authors@R: person("Chen", "Ding", email = "chending@mail.ustc.edu.cn",
+                 role = c("aut", "cre"))
+Maintainer: The package maintainer <yourself@somewhere.net>
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+Depends: R (>= 3.6.1)
+Imports: ggplot2, ggpubr, bio3d, plot3D, Cairo, data.table, dplyr
+License: MIT + file LICENSE
+Encoding: UTF-8
+RoxygenNote: 7.3.1
+NeedsCompilation: no
+Packaged: 2024-07-29 12:11:52 UTC; 丁晨
+Author: Chen Ding [aut, cre]
