@@ -35,7 +35,8 @@ Normalize data between different blocks and select single mutations.
 
 ``` r
 nor_fit<-nor_fitness(block1="path/to/block1",block2="path/to/block2")
-nor_fit_single<-nor_fitness_single_mut(input=nor_fit)
+nor_fit_pos<-pos_id(nor_fit,wt_aa)
+nor_fit_single<-nor_fitness_single_mut(input=nor_fit_pos)
 ```
 
 ### Step3
