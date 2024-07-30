@@ -25,7 +25,7 @@ nor_fitness <- function(...) {
     all_variants$one_over_sigmasquared<-1/(all_variants$growthrate_sigma)**2
     #average stop mutants growth rate
     dead_gr<-all_variants[STOP==T,]
-    stop1<-sum(dead_gr_$gr_over_sigmasquared, na.rm = TRUE)/sum(dead_gr$one_over_sigmasquared, na.rm = TRUE)
+    stop1<-sum(dead_gr$gr_over_sigmasquared, na.rm = TRUE)/sum(dead_gr$one_over_sigmasquared, na.rm = TRUE)
     #average WT_aa growth rate
     wt_gr<-all_variants[WT==T,]
     wt1<-sum(wt_gr$gr_over_sigmasquared, na.rm = TRUE)/sum(wt_gr$one_over_sigmasquared, na.rm = TRUE)
