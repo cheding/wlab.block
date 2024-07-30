@@ -26,7 +26,7 @@ aa_complement<-function(
   #fill both sides
   sup1<-substr(wt_aa,1,start-1)
   sup2<-substr(wt_aa,start+nchar(aa),nchar(wt_aa))
-  all_variants[,aa_seq:=paste0(sup1,aa,sup2)]
+  all_variants[,aa_seq:=paste0(sup1,aa_seq,sup2)]
   #save file
   fullseq<-gsub(".RData$","_fullseq.RData",required_file)
   save(all_variants,doubles,singles,synonymous,wildtype,file = required_file)
