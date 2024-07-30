@@ -58,12 +58,12 @@ nor_fitness <- function(...) {
   #normalize other blocks
   for(i in 2:length(required_file)){
     #growth rate lm parameter
-    b1b2<-lm(formula = colnames(gr_lm)[1]~colnames(gr_lm)[i],data = gr_lm)
+    b1b2<-lm(formula = as.formula(colnames(gr_lm)[1]~colnames(gr_lm)[i]),data = gr_lm)
     b1b2<-summary(b1b2)
     a2<-b1b2$coefficients[[2]]
     b2<-b1b2$coefficients[[1]]
     #fitness lm parameter
-    c1c2<-lm(formula = colnames(fit_lm)[1]~colnames(fit_lm)[i],data = fit_lm)
+    c1c2<-lm(formula = as.formula(colnames(fit_lm)[1]~colnames(fit_lm)[i]),data = fit_lm)
     c1c2<-summary(c1c2)
     d2<-c1c2$coefficients[[2]]
     e2<-c1c2$coefficients[[1]]
