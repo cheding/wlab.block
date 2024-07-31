@@ -18,6 +18,7 @@ rbg_nick_library_thresholds<-function(
     min_obs=200,
     min_phenotypes=NULL
 ){
+  input_files<- file.path(unlist(input_files_thre), sapply(input_files_thre, list.files, pattern = "*Q20_variant_data_merge.tsv"))
   #Load singles list
   load(file.path(input_dir, "singles_list.RData"))
   load(file.path(input_dir, "rgb_dt.RData"))
@@ -26,7 +27,7 @@ rbg_nick_library_thresholds<-function(
   }
   num<-ncol(singles_list[[1]])-1
   if(is.null(min_phenotypes)){
-    min_phenotypes=num-1
+    min_phenotypes=num
   }
   #Number of backgrounds based on thresholds
   rbg_list <- list()
@@ -40,7 +41,7 @@ rbg_nick_library_thresholds<-function(
   ###########################
 
   #Load count tables
-  count_list <- lapply(input_files_thre, 'fread')
+  count_list <- lapply(input_files, 'fread')
   names(count_list) <- names(input_files_thre)
 
   #Loop over all count tables

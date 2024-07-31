@@ -15,7 +15,9 @@ rbg_density_plot<-function(
   }
   #Load real backgrounds
   load(file.path(input_dir, "filter_variants.RData"))
-
+  name<-as.data.frame(strsplit(names(mc_doubles_list), '_'))
+  block<-unique(as.character(name[nrow(name),]))
+  num<-length(mc_doubles_list)/length(block)
   #Real doubles based on real backgrounds
   plot_dt <- rbindlist(mc_doubles_list)
   plot_dt[, block_plot := paste0("block = ", substr(phenotype, nchar(phenotype), nchar(phenotype)))]
@@ -26,7 +28,7 @@ rbg_density_plot<-function(
     ggplot2::ylab("Density") +
     ggplot2::theme_bw() +
     ggplot2::facet_grid(block_plot~phenotypes_plot)
-  ggplot2::ggsave(file.path(output_dir, "real_backgrounds_mean_input_count.pdf"), d, width = 6, height = 4, useDingbats=FALSE)
+  ggplot2::ggsave(file.path(output_dir, "real_backgrounds_mean_input_count.pdf"), d, width = num+2, height = length(block)+1, useDingbats=FALSE)
 
   #Real doubles based on NNK
   plot_dt <- rbindlist(mc_nnk_list)
@@ -38,7 +40,7 @@ rbg_density_plot<-function(
     ggplot2::ylab("Density") +
     ggplot2::theme_bw() +
     ggplot2::facet_grid(block_plot~phenotypes_plot)
-  ggplot2::ggsave(file.path(output_dir, "real_nnk_doubles_mean_input_count.pdf"), d, width = 6, height = 4, useDingbats=FALSE)
+  ggplot2::ggsave(file.path(output_dir, "real_nnk_doubles_mean_input_count.pdf"), d, width = num+2, height = length(block)+1, useDingbats=FALSE)
 
   #Real singles based on NNK
   plot_dt <- rbindlist(mc_nnk_list)
@@ -50,5 +52,5 @@ rbg_density_plot<-function(
     ggplot2::ylab("Density") +
     ggplot2::theme_bw() +
     ggplot2::facet_grid(block_plot~phenotypes_plot)
-  ggplot2::ggsave(file.path(output_dir, "real_nnk_singles_mean_input_count.pdf"), d, width = 6, height = 4, useDingbats=FALSE)
+  ggplot2::ggsave(file.path(output_dir, "real_nnk_singles_mean_input_count.pdf"), d, width = num+2, height = length(block)+1, useDingbats=FALSE)
 }

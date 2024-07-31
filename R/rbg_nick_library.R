@@ -86,7 +86,7 @@ rbg_nick_library<-function(
   #Load real backgrounds
   load(file.path(output_dir, "rgb_dt.RData"))
 
-  plot_dt <- copy(rgb_dt)
+  plot_dt <- rgb_dt
   plot_dt[, block_plot := paste0("block = ", block)]
   plot_dt[, min_phenotypes_plot := paste0("min_phen. = ", min_phenotypes)]
   d <- ggplot2::ggplot(plot_dt,ggplot2::aes(x = min_obs, y = count)) +
@@ -100,5 +100,5 @@ rbg_nick_library<-function(
     ggplot2::scale_y_continuous(trans='log10') +
     ggplot2::theme_bw() +
     ggplot2::facet_grid(block_plot~min_phenotypes_plot)
-  ggplot2::ggsave(file.path(output_dir, "real_backgrounds_lineplots.pdf"), d, width = 8, height = 4, useDingbats=FALSE)
+  ggplot2::ggsave(file.path(output_dir, "real_backgrounds_lineplots.pdf"), d, width = num+3, height = num+1, useDingbats=FALSE)
 }
