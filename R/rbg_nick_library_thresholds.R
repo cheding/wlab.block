@@ -21,7 +21,7 @@ rbg_nick_library_thresholds<-function(
   input_files<- file.path(unlist(input_files_thre), sapply(input_files_thre, list.files, pattern = "*Q20_variant_data_merge.tsv"))
   #Load singles list
   load(file.path(input_dir, "singles_list.RData"))
-  load(file.path(input_dir, "rgb_dt.RData"))
+  load(file.path(input_dir, "rbg_dt.RData"))
   if(is.null(output_dir)){
     output_dir=input_dir
   }

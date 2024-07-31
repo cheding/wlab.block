@@ -74,19 +74,19 @@ rbg_nick_library<-function(
       }
     }
   }
-  rgb_dt <- rbindlist(rbg_list)
+  rbg_dt <- rbindlist(rbg_list)
 
   #Save
-  save(rgb_dt, file = file.path(output_dir, "rgb_dt.RData"))
+  save(rbg_dt, file = file.path(output_dir, "rbg_dt.RData"))
 
   ###########################
   ### Plot #real backgrounds vs. minimum observations in doubles
   ###########################
 
   #Load real backgrounds
-  load(file.path(output_dir, "rgb_dt.RData"))
+  load(file.path(output_dir, "rbg_dt.RData"))
 
-  plot_dt <- rgb_dt
+  plot_dt <- rbg_dt
   plot_dt[, block_plot := paste0("block = ", block)]
   plot_dt[, min_phenotypes_plot := paste0("min_phen. = ", min_phenotypes)]
   d <- ggplot2::ggplot(plot_dt,ggplot2::aes(x = min_obs, y = count)) +
