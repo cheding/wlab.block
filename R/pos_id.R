@@ -19,8 +19,8 @@ pos_id<-function(
   output[,AA_Pos1 :=  which(unlist(strsplit(aa_seq, ""))!=unlist(strsplit(wt_aa, ""))[1:nchar(aa_seq)])[1],aa_seq]
   output[,AA_Pos2 :=  which(unlist(strsplit(aa_seq, ""))!=unlist(strsplit(wt_aa, ""))[1:nchar(aa_seq)])[2],aa_seq]
   #substr(s, first, last)
-  output[,wtcodon1 := substr(wt_aa,AA_Pos1,AA_Pos1)]
-  output[,wtcodon2 := substr(wt_aa,AA_Pos2,AA_Pos2)]
+  for(i in 1:num){output[AA_Pos1==i,wtcodon1 := substr(wt_aa,i,i)]}
+  for(i in 1:num){output[AA_Pos2==i,wtcodon2 := substr(wt_aa,i,i)]}
   output[,codon1 := substr(aa_seq,AA_Pos1,AA_Pos1)]
   output[,codon2 := substr(aa_seq,AA_Pos2,AA_Pos2)]
   #real mutant locations
