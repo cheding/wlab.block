@@ -78,8 +78,8 @@ rbg_nick_library_thresholds<-function(
     #Remove unnecessary columns
     all_variants <- all_variants[,.SD,,.SDcols = names(all_variants)[grepl('nt_seq|input|output', names(all_variants))]]
     #Rename columns
-    names(all_variants) <- gsub(".*input", "input", names(all_variants))
-    names(all_variants) <- gsub(".*output", "output", names(all_variants))
+    # names(all_variants) <- gsub(".*input", "input", names(all_variants))
+    # names(all_variants) <- gsub(".*output", "output", names(all_variants))
     names(all_variants) <- c("nt_seq", sapply(strsplit(names(all_variants)[2:length(names(all_variants))], '_'), '[', 1))
     #Save count table
     write.table(all_variants, file = file.path(output_dir, paste0("variantCounts_", names(count_list)[i], '.tsv')), sep = "\t", row.names = F, quote = F)
