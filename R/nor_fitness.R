@@ -56,24 +56,26 @@ nor_fitness <- function(...) {
   all_data[[1]][,nor_fitness:=fitness]
   all_data[[1]][,nor_fitness_sigma:=sigma]
   #normalize other blocks
-  for(i in 2:length(required_file)){
-    #growth rate lm parameter
-    formula1 <- as.formula(paste0(colnames(gr_lm)[1],"~", colnames(gr_lm)[i]))
-    b1b2<-lm(formula = formula1,data = gr_lm)
-    b1b2<-summary(b1b2)
-    a2<-b1b2$coefficients[[2]]
-    b2<-b1b2$coefficients[[1]]
-    #fitness lm parameter
-    formula2 <- as.formula(paste0(colnames(fit_lm)[1],"~", colnames(fit_lm)[i]))
-    c1c2<-lm(formula = formula2,data = fit_lm)
-    c1c2<-summary(c1c2)
-    d2<-c1c2$coefficients[[2]]
-    e2<-c1c2$coefficients[[1]]
-    #normalize block[i]
-    all_data[[i]][,nor_gr:=growthrate*a2+b2]
-    all_data[[i]][,nor_gr_sigma:=growthrate_sigma*a2]
-    all_data[[i]][,nor_fitness:=fitness*d2+e2]
-    all_data[[i]][,nor_fitness_sigma:=sigma*d2]
+  if(length(required_file)>1){
+    for(i in 2:length(required_file)){
+      #growth rate lm parameter
+      formula1 <- as.formula(paste0(colnames(gr_lm)[1],"~", colnames(gr_lm)[i]))
+      b1b2<-lm(formula = formula1,data = gr_lm)
+      b1b2<-summary(b1b2)
+      a2<-b1b2$coefficients[[2]]
+      b2<-b1b2$coefficients[[1]]
+      #fitness lm parameter
+      formula2 <- as.formula(paste0(colnames(fit_lm)[1],"~", colnames(fit_lm)[i]))
+      c1c2<-lm(formula = formula2,data = fit_lm)
+      c1c2<-summary(c1c2)
+      d2<-c1c2$coefficients[[2]]
+      e2<-c1c2$coefficients[[1]]
+      #normalize block[i]
+      all_data[[i]][,nor_gr:=growthrate*a2+b2]
+      all_data[[i]][,nor_gr_sigma:=growthrate_sigma*a2]
+      all_data[[i]][,nor_fitness:=fitness*d2+e2]
+      all_data[[i]][,nor_fitness_sigma:=sigma*d2]
+    }
   }
   data_after_nor<-dplyr::bind_rows(all_data,.id='block')
   return(data_after_nor)
