@@ -13,7 +13,7 @@ pos_id<-function(
     input,
     wt_aa
 ){
-  output<-input
+  output<-copy(input)
   num<-nchar(wt_aa)
   #obtain mutant locations
   output[,AA_Pos1 :=  which(unlist(strsplit(aa_seq, ""))!=unlist(strsplit(wt_aa, ""))[1:nchar(aa_seq)])[1],aa_seq]
