@@ -16,14 +16,14 @@ fitness_heatmap<-function(
     title="fitness"
 ){
   aa_list <- as.list(unlist(strsplit("GAVLMIFYWKRHDESTCNQP", "")))
+  num<-nchar(wt_aa)+1
   input_single<-input
-
   input_single[,position:=AA_Pos1]
   input_single[,WT_AA:=wtcodon1]
   #create assistant data table
   # * represent STOP codon
   heatmap_tool_fitness<-data.table(wtcodon1 = rep(unlist(strsplit(wt_aa,"")),each=21),
-                                   position = rep(2:nchar(wt_aa)+1,each=21),
+                                   position = rep(2:num,each=21),
                                    codon1 = c(unlist(aa_list),"*"))
   heatmap_tool_fitness_anno_single<-merge(input_single,heatmap_tool_fitness,by=c("wtcodon1","position","codon1"),all=T)
   heatmap_tool_fitness_anno_single<-within(heatmap_tool_fitness_anno_single,
@@ -33,7 +33,7 @@ fitness_heatmap<-function(
   ggplot2::ggplot()+
     ggplot2::theme_classic()+
     ggplot2::geom_tile(data=heatmap_tool_fitness_anno_single[position>1,],ggplot2::aes(x=position,y=codon1,fill=nor_fitness_nooverlap))+
-    ggplot2::scale_x_discrete(limits=c(2:nchar(wt_aa)+1),labels=c(2:nchar(wt_aa)+1))+
+    ggplot2::scale_x_discrete(limits=c(2:num),labels=c(2:num))+
     ggplot2::theme(axis.text.x = ggplot2::element_text(size = 8, vjust = 0.5,hjust = 0.5,
                                                        color = c(NA,NA,NA,rep(c("black",NA,NA,NA,NA),nchar(wt_aa)%/%5))))+
     ggplot2::scale_fill_gradient2(limits=c(-1.5,1.5),low="#F4270C",mid="gray",high="#1B38A6",na.value = "white")+
