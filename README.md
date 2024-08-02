@@ -17,8 +17,8 @@ devtools::install_github("cheding/wlab.block")
 This is a basic example pipeline which shows you how to process DiMSum report, and finally generate heatmaps:
 
 ``` r
-library(wlab.block)
 ## basic example code
+library(wlab.block)
 ```
 
 ### Step1
