@@ -13,10 +13,10 @@
 plot2D_fold<-function(
     input,
     model,
-    block
+    block,
+    RT=0.001987*(273+30)
 ){
   mochi<-fread(model)
-
   pre_nor<-input
   pre_nor_input<-pre_nor[phenotype==block,]
 

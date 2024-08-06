@@ -28,7 +28,7 @@ plot2D_vresus<-function(
   lm_mochi<-lm(pre_nor_fitness~ob_nor_fitness,pre_nor[phenotype==phenotypen,])
   ggplot2::ggplot()+
     ggplot2::stat_binhex(data=pre_nor[phenotype==phenotypen,],ggplot2::aes(x=ob_nor_fitness,y=pre_nor_fitness),
-                         bins = 50,size=0,color="black") +
+                         bins = 50,linewidth=0,color="black") +
     ggplot2::scale_fill_gradient(low="white",high="black",trans="log10",guide = ggplot2::guide_colorbar(barwidth = 0.5,barheight = 1.5)) +
     ggplot2::geom_hline(yintercept=0)+
     ggplot2::geom_vline(xintercept=0)+

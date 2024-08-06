@@ -7,7 +7,7 @@
 #' @param model MoCHI linears_weights model
 #' @param assay assay name
 #' @param block target block number
-#' @param output_path plot output path
+#' @param output_file plot output path
 #'
 #' @return Nothing
 #' @export
@@ -17,13 +17,13 @@ plot3D_bind<-function(
     model,
     assay,
     block,
-    output_path="./"
+    output_file="./"
 ){
   mochi<-fread(model)
 
   pre_nor<-input
-  bind_ddg1<-pre_nor[eval(paste0("Binding",block,"_",assay))==1,.(nt_seq,Nham_aa,aa_seq,fold_1_additive_trait1,fitness)]
-  fold_ddg1<-pre_nor[eval(paste0("Abundance",block))==1,.(nt_seq,Nham_aa,aa_seq,fold_1_additive_trait0)]
+  bind_ddg1<-pre_nor[eval(parse(text=paste0("Binding",block,"_",assay)))==1,.(nt_seq,Nham_aa,aa_seq,fold_1_additive_trait1,fitness)]
+  fold_ddg1<-pre_nor[eval(parse(text=paste0("Abundance",block)))==1,.(nt_seq,Nham_aa,aa_seq,fold_1_additive_trait0)]
   ddg_merge1<-merge(fold_ddg1,bind_ddg1,by=c("nt_seq","aa_seq","Nham_aa"))
 
   binding_range1<-ddg_merge1[Nham_aa>0,range(fold_1_additive_trait1)]
@@ -60,7 +60,7 @@ plot3D_bind<-function(
     observed_fitness = fitness_binding
   )
 
-  Cairo::CairoPDF(file = output_path)
+  Cairo::CairoPDF(file = output_file)
   plot3D::persp3D(x=binding_energy_grid1*RT,
                   y=folding_energy_grid1*RT,
                   z=matrix(data=pred_fitness_dt_binding[,observed_fitness],
