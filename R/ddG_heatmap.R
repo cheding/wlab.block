@@ -16,6 +16,7 @@ ddG_heatmap<-function(
     title="folding free energy change"
 ){
   ddG<-fread(input)
+  num<-nchar(wt_aa)+1
   aa_list <- as.list(unlist(strsplit("GAVLMIFYWKRHDESTCNQP", "")))
   #get real mutant position
   ddG[,Pos_real:=Pos_ref+1]
@@ -24,7 +25,7 @@ ddG_heatmap<-function(
   ddG[,mt:=paste0(wt_codon,Pos_real,mt_codon)]
   #create assistant data table
   heatmap_tool<-data.table(wt_codon = rep(unlist(strsplit(wt_aa,"")),each=20),
-                           Pos_real = rep(2:nchar(wt_aa)+1,each=20),
+                           Pos_real = rep(2:num,each=20),
                            mt_codon = unlist(aa_list))
   ddG<-merge(ddG,heatmap_tool,by=c("Pos_real","wt_codon","mt_codon"),all=T)
   input_heatmap<-within(ddG, mt_codon <- factor(mt_codon, levels = c("D","E","R","H","K","S","T","N","Q","C","G","P","A","V","I","L","M","F","W","Y")))
@@ -33,7 +34,7 @@ ddG_heatmap<-function(
   ggplot2::ggplot()+
     ggpubr::theme_classic2()+
     ggplot2::geom_tile(data=input_heatmap[Pos_real>1,],ggplot2::aes(x=Pos_real,y=mt_codon,fill=`mean_kcal/mol`))+
-    ggplot2::scale_x_discrete(limits=c(2:nchar(wt_aa)+1),labels=c(2:nchar(wt_aa)+1))+
+    ggplot2::scale_x_discrete(limits=c(2:num),labels=c(2:num))+
     ggplot2::scale_fill_gradient2(limits=c(-3,3),low="#1B38A6",mid="gray",high="#F4270C",na.value ="white")+
     ggplot2::ggtitle(title)+
     ggplot2::theme(axis.text.x = ggplot2::element_text(size = 5, vjust = 0.5,hjust = 0.5,
