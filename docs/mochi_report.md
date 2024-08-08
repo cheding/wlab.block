@@ -43,7 +43,7 @@ plot2D_vresus(
 ```
 At the same time, there are also some more intuitive graphics to reflect the reliability of the model's predictions.
 ``` r
-# abundance fitness vs. binding energy change
+# abundance fitness vs. folding energy change
 plot2D_fold(
     input=pre_nor,
     model="path/to/model/you want to test",
