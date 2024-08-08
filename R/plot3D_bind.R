@@ -17,7 +17,8 @@ plot3D_bind<-function(
     model,
     assay,
     block,
-    output_file="./"
+    output_file="./",
+    RT = 0.001987*(273+30)
 ){
   mochi<-fread(model)
 
@@ -42,8 +43,7 @@ plot3D_bind<-function(
 
   fraction_bound_fun<- function(
     folding_energy,
-    binding_energy,
-    RT = 0.001987*(273+30)
+    binding_energy
   ){
     return(1/(1+exp(binding_energy/RT)*(1+exp(folding_energy/RT))))
   }
