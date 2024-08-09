@@ -63,11 +63,11 @@ nor_predict<-function(
   # }
 
   #normalize phenotype1
-  pre_nor[phenotype==1,pre_nor_mean_fitness:=mean]
-  pre_nor[phenotype==1,pre_nor_fitness_sigma:=std]
-  pre_nor[phenotype==1,ob_nor_fitness:=fitness]
-  pre_nor[phenotype==1,ob_nor_fitness_sigma:=sigma]
-  pre_nor[phenotype==1,pre_nor_fitness:=predicted_fitness]
+  pre_nor[phenotype==1+nb,pre_nor_mean_fitness:=mean]
+  pre_nor[phenotype==1+nb,pre_nor_fitness_sigma:=std]
+  pre_nor[phenotype==1+nb,ob_nor_fitness:=fitness]
+  pre_nor[phenotype==1+nb,ob_nor_fitness_sigma:=sigma]
+  pre_nor[phenotype==1+nb,pre_nor_fitness:=predicted_fitness]
 
   #normalize other blocks
   for(i in 2:length(required_file)){
