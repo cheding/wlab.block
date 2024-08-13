@@ -13,7 +13,11 @@ bio3D_relative_angle <- function(
     input_file,
     chain = "A"
 ){
-
+  calculate_angle <- function(
+    a,
+    b){
+    acos((a[1]*b[1] + a[2]*b[2] + a[3]*b[3])/(sqrt(a[1]^2 + a[2]^2 + a[3]^2) * sqrt(b[1]^2 + b[2]^2 + b[3]^2)))*180/pi
+  }
   #load PDB structure
   pdb <- bio3d::read.pdb(input_file, rm.alt = TRUE)
 
@@ -56,7 +60,7 @@ bio3D_relative_angle <- function(
 
   #Calculate relative angle
   for(i in 1:nrow(calpha_atoms_xyz)){
-    calpha_atoms_xyz[i, relative_angle := doubledeepms__calculate_angle(
+    calpha_atoms_xyz[i, relative_angle := calculate_angle(
       a = unlist(calpha_atoms_xyz[i,.(x,y,z)]),
       b = unlist(cbeta_atoms_xyz[i,.(x,y,z)]))]
   }
