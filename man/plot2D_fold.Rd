@@ -4,7 +4,7 @@
 \alias{plot2D_fold}
 \title{A Function to plot2D folding fitness against folding ddG}
 \usage{
-plot2D_fold(input, model, block)
+plot2D_fold(input, model, block, RT = 0.001987 * (273 + 30))
 }
 \arguments{
 \item{input}{normalized predicted phenotypes data table}

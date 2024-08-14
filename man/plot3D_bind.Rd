@@ -4,7 +4,14 @@
 \alias{plot3D_bind}
 \title{A Function to plot3D binding fitness against folding ddG and binding ddG}
 \usage{
-plot3D_bind(input, model, assay, block, output_path = "./")
+plot3D_bind(
+  input,
+  model,
+  assay,
+  block,
+  output_file = "./",
+  RT = 0.001987 * (273 + 30)
+)
 }
 \arguments{
 \item{input}{normalized predicted phenotypes data table}
@@ -15,7 +22,7 @@ plot3D_bind(input, model, assay, block, output_path = "./")
 
 \item{block}{target block number}
 
-\item{output_path}{plot output path}
+\item{output_file}{plot output path}
 }
 \value{
 Nothing

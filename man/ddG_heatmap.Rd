@@ -4,7 +4,12 @@
 \alias{ddG_heatmap}
 \title{A Function to get ddG heatmap}
 \usage{
-ddG_heatmap(input, wt_aa, title = "folding free energy change")
+ddG_heatmap(
+  input,
+  wt_aa,
+  title = "folding free energy change",
+  legend_limits = NULL
+)
 }
 \arguments{
 \item{input}{path to MoCHI output ".txt" file}
@@ -12,6 +17,8 @@ ddG_heatmap(input, wt_aa, title = "folding free energy change")
 \item{wt_aa}{wt amino acid sequence}
 
 \item{title}{heatmap title}
+
+\item{legend_limits}{range of legend}
 }
 \value{
 ddG heatmap

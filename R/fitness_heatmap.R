@@ -6,6 +6,7 @@
 #' @param input single mutant fitness data table
 #' @param wt_aa wt amino acid sequence
 #' @param title heatmap title
+#' @param legend_limits range of legend
 #'
 #' @return fitness heatmap
 #' @export
@@ -13,7 +14,8 @@
 fitness_heatmap<-function(
     input,
     wt_aa,
-    title="fitness"
+    title="fitness",
+    legend_limits=NULL
 ){
   aa_list <- as.list(unlist(strsplit("GAVLMIFYWKRHDESTCNQP", "")))
   num<-nchar(wt_aa)+1
@@ -36,7 +38,7 @@ fitness_heatmap<-function(
     ggplot2::scale_x_discrete(limits=c(2:num),labels=c(2:num))+
     ggplot2::theme(axis.text.x = ggplot2::element_text(size = 8, vjust = 0.5,hjust = 0.5,
                                                        color = c(NA,NA,NA,rep(c("black",NA,NA,NA,NA),nchar(wt_aa)%/%5))))+
-    ggplot2::scale_fill_gradient2(limits=c(-1.5,1.5),low="#F4270C",mid="gray",high="#1B38A6",na.value = "white")+
+    ggplot2::scale_fill_gradient2(limits=legend_limits,low="#F4270C",mid="gray",high="#1B38A6",na.value = "white")+
     ggplot2::ylab("Mutant aa")+
     ggplot2::ggtitle(title)+
     ggplot2::labs(fill=NULL)+

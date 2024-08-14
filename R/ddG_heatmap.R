@@ -6,6 +6,7 @@
 #' @param input path to MoCHI output ".txt" file
 #' @param wt_aa wt amino acid sequence
 #' @param title heatmap title
+#' @param legend_limits range of legend
 #'
 #' @return ddG heatmap
 #' @export
@@ -13,7 +14,8 @@
 ddG_heatmap<-function(
     input,
     wt_aa,
-    title="folding free energy change"
+    title="folding free energy change",
+    legend_limits=NULL
 ){
   ddG<-fread(input)
   num<-nchar(wt_aa)+1
@@ -35,7 +37,7 @@ ddG_heatmap<-function(
     ggpubr::theme_classic2()+
     ggplot2::geom_tile(data=input_heatmap[Pos_real>1,],ggplot2::aes(x=Pos_real,y=mt_codon,fill=`mean_kcal/mol`))+
     ggplot2::scale_x_discrete(limits=c(2:num),labels=c(2:num))+
-    ggplot2::scale_fill_gradient2(limits=c(-3,3),low="#1B38A6",mid="gray",high="#F4270C",na.value ="white")+
+    ggplot2::scale_fill_gradient2(limits=legend_limits,low="#1B38A6",mid="gray",high="#F4270C",na.value ="white")+
     ggplot2::ggtitle(title)+
     ggplot2::theme(axis.text.x = ggplot2::element_text(size = 5, vjust = 0.5,hjust = 0.5,
                                                        color = c(NA,NA,NA,rep(c("black",NA,NA,NA,NA),nchar(wt_aa)%/%5))))+

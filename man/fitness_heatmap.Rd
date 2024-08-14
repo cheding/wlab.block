@@ -4,7 +4,7 @@
 \alias{fitness_heatmap}
 \title{A Function to get fitness heatmap}
 \usage{
-fitness_heatmap(input, wt_aa, title = "fitness")
+fitness_heatmap(input, wt_aa, title = "fitness", legend_limits = NULL)
 }
 \arguments{
 \item{input}{single mutant fitness data table}
@@ -12,6 +12,8 @@ fitness_heatmap(input, wt_aa, title = "fitness")
 \item{wt_aa}{wt amino acid sequence}
 
 \item{title}{heatmap title}
+
+\item{legend_limits}{range of legend}
 }
 \value{
 fitness heatmap
