@@ -24,6 +24,5 @@ ddG_heatmap(
 ddG heatmap
 }
 \description{
-#' @description
 This function allows you to get ddG heatmap.
 }

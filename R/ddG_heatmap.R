@@ -1,6 +1,6 @@
 #' A Function to get ddG heatmap
 #'
-#'#' @description
+#' @description
 #' This function allows you to get ddG heatmap.
 #'
 #' @param input path to MoCHI output ".txt" file
