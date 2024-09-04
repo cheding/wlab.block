@@ -30,6 +30,8 @@ ddG_data_assay<-function(
   ddG<-merge(ddG,heatmap_tool,by=c("Pos_real","wt_codon","mt_codon"),all=T)
 
   #get statistical values of interest
+  codon<-ddG[Pos_real>1,unique(.SD[[1]]),.SDcols = c("wt_codon"),by="Pos_real"]
+  setnames(codon,"V1","codon")
   mean<-ddG[Pos_real>1,sum(.SD[[1]]/.SD[[2]]^2, na.rm = T)/sum(1/.SD[[2]]^2, na.rm = T),.SDcols = c("mean_kcal/mol","std_kcal/mol"),by="Pos_real"]
   setnames(mean,"V1","mean")
   abs_mean<-ddG[Pos_real>1,sum(abs(.SD[[1]])/.SD[[2]]^2, na.rm = T)/sum(1/.SD[[2]]^2, na.rm = T),.SDcols = c("mean_kcal/mol","std_kcal/mol"),by="Pos_real"]
@@ -44,7 +46,8 @@ ddG_data_assay<-function(
   setnames(count,"V1","count")
 
   #summarize and return data
-  output<-merge(mean,abs_mean,by="Pos_real",all=T)
+  output<-merge(codon,mean,by="Pos_real",all=T)
+  output<-merge(output,abs_mean,by="Pos_real",all=T)
   output<-merge(output,sigma,by="Pos_real",all=T)
   output<-merge(output,max,by="Pos_real",all=T)
   output<-merge(output,min,by="Pos_real",all=T)
