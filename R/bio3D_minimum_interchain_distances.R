@@ -6,6 +6,8 @@
 #' @param input_file path to PDB file (required)
 #' @param chain_query query chain id (default:A)
 #' @param chain_target target chain id (default:B)
+#' @param residue_query query residue range (default:all)
+#' @param residue_target target residue range (default:all)
 #'
 #' @return data.table with minimum inter-chain (side-chain) heavy atom distances
 #' @export
@@ -13,7 +15,9 @@
 bio3D_minimum_interchain_distances <- function(
     input_file,
     chain_query = "A",
-    chain_target = "B"
+    chain_target = "B",
+    residue_query=NULL,
+    residue_target=NULL
 ){
 
   #load PDB structure
@@ -60,10 +64,17 @@ bio3D_minimum_interchain_distances <- function(
     pdb_sub <- bio3d::trim.pdb(pdb, sele_list[[metric]])
     dist_mat <- bio3d::dm.xyz(pdb_sub$xyz, grpby=apply(pdb_sub$atom[,c("resno", "chain")], 1, paste, collapse = "_"), scut=0, mask.lower = FALSE)
     resno_sub <- unique(pdb_sub$atom[,c("resno", "chain")])
+
+    if(is.null(residue_query)){
+      residue_query<-resno_sub[resno_sub$chain==chain_query,"resno"]
+    }
+    if(is.null(residue_target)){
+      residue_target<-resno_sub[resno_sub$chain==chain_target,"resno"]
+    }
     #Ligand distance matrix
-    ligand_dist <- dist_mat[resno_sub[,"chain"]==chain_query,resno_sub[,"chain"]==chain_target]
+    ligand_dist <- dist_mat[resno_sub[,"chain"]==chain_query&resno_sub[,"resno"]%in%residue_query,resno_sub[,"chain"]==chain_target&resno_sub[,"resno"]%in%residue_target]
     #Absolute residue number
-    ligand_dist_dt <- data.table(Pos = resno_sub[resno_sub[,"chain"]==chain_query,"resno"])
+    ligand_dist_dt <- data.table(Pos = resno_sub[resno_sub[,"chain"]==chain_query&resno_sub[,"resno"]%in%residue_query,"resno"])
     #Minimum ligand distance
     ligand_dist_dt[, min_dist := apply(ligand_dist, 1, min)]
     names(ligand_dist_dt)[2] <- paste0(metric, "min_ligand")

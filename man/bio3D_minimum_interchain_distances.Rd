@@ -7,7 +7,9 @@
 bio3D_minimum_interchain_distances(
   input_file,
   chain_query = "A",
-  chain_target = "B"
+  chain_target = "B",
+  residue_query = NULL,
+  residue_target = NULL
 )
 }
 \arguments{
@@ -16,6 +18,10 @@ bio3D_minimum_interchain_distances(
 \item{chain_query}{query chain id (default:A)}
 
 \item{chain_target}{target chain id (default:B)}
+
+\item{residue_query}{query residue range (default:all)}
+
+\item{residue_target}{target residue range (default:all)}
 }
 \value{
 data.table with minimum inter-chain (side-chain) heavy atom distances
