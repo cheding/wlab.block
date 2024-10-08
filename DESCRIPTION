@@ -12,7 +12,7 @@ Depends: R (>= 3.6.1)
 Imports: ggplot2, ggpubr, bio3d, plot3D, Cairo, data.table, dplyr
 License: MIT + file LICENSE
 Encoding: UTF-8
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 NeedsCompilation: no
 Packaged: 2024-07-29 12:11:52 UTC; 丁晨
 Author: Chen Ding [aut, cre]

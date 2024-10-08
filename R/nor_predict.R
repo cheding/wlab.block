@@ -70,21 +70,23 @@ nor_predict<-function(
   pre_nor[phenotype==1+nb,pre_nor_fitness:=predicted_fitness]
 
   #normalize other blocks
-  for(i in 2:length(required_file)){
+  if(length(required_file)>1){
+    for(i in 2:length(required_file)){
 
-    #fitness lm parameter
-    formula2 <- as.formula(paste0(colnames(fit_lm)[1],"~", colnames(fit_lm)[i]))
-    c1c2<-lm(formula = formula2,data = fit_lm)
-    c1c2<-summary(c1c2)
-    d2<-c1c2$coefficients[[2]]
-    e2<-c1c2$coefficients[[1]]
-    #normalize block[i]
-    pre_nor[phenotype==i+nb,pre_nor_mean_fitness:=mean*d2+e2]
-    pre_nor[phenotype==i+nb,pre_nor_fitness_sigma:=std*d2]
-    pre_nor[phenotype==i+nb,ob_nor_fitness:=fitness*d2+e2]
-    pre_nor[phenotype==i+nb,ob_nor_fitness_sigma:=sigma*d2]
-    pre_nor[phenotype==i+nb,pre_nor_fitness:=predicted_fitness*d2+e2]
+      #fitness lm parameter
+      formula2 <- as.formula(paste0(colnames(fit_lm)[1],"~", colnames(fit_lm)[i]))
+      c1c2<-lm(formula = formula2,data = fit_lm)
+      c1c2<-summary(c1c2)
+      d2<-c1c2$coefficients[[2]]
+      e2<-c1c2$coefficients[[1]]
+      #normalize block[i]
+      pre_nor[phenotype==i+nb,pre_nor_mean_fitness:=mean*d2+e2]
+      pre_nor[phenotype==i+nb,pre_nor_fitness_sigma:=std*d2]
+      pre_nor[phenotype==i+nb,ob_nor_fitness:=fitness*d2+e2]
+      pre_nor[phenotype==i+nb,ob_nor_fitness_sigma:=sigma*d2]
+      pre_nor[phenotype==i+nb,pre_nor_fitness:=predicted_fitness*d2+e2]
 
+    }
   }
   return(pre_nor)
 }
