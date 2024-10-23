@@ -83,7 +83,7 @@ rbg_synthetic_library<-function(
     singles <- rbg_get_singles(copy(count_list[[i]]))
     #Mean counts of singles with/without G/T in 3rd position
     mc_nnk_list <- c(mc_nnk_list,
-                     list(singles[,.(mean_count = mean_count, real_bg = (!Mut1_codon %in% final_backgrounds & substr(Mut1_codon, nchar(Mut1_codon), nchar(Mut1_codon)) %in% c('g', 't')), phenotype = names(count_list)[i], Nham_aa = Nham_aa)]))
+                     list(singles[,.(mean_count = mean_count, real_bg = ((Mut1_codon %in% final_backgrounds) | (!Mut1_codon %in% final_backgrounds & substr(Mut1_codon, nchar(Mut1_codon), nchar(Mut1_codon)) %in% c('g', 't'))), phenotype = names(count_list)[i], Nham_aa = Nham_aa)]))
     #Filter singles for those matching NNK (or real backgrounds)
     singles <- singles[((Mut1_codon %in% final_backgrounds) | (!Mut1_codon %in% final_backgrounds & substr(Mut1_codon, nchar(Mut1_codon), nchar(Mut1_codon)) %in% c('g', 't')))]
     #Annotate doubles

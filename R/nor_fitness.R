@@ -35,7 +35,7 @@ nor_fitness <- function(...) {
     ######
     # fitness
     ######
-    #normalize growth rate
+    #normalize fitness
     all_variants$fitness_over_sigmasquared<-all_variants$fitness/(all_variants$sigma)**2
     all_variants$one_over_fitness_sigmasquared<-1/(all_variants$sigma)**2
     #average stop mutants fitness
