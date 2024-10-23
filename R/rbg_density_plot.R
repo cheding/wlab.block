@@ -73,7 +73,7 @@ rbg_density_plot<-function(
   ggplot2::ggsave(file.path(output_dir, "real_nnk_singles_mean_input_count.pdf"), d, width = num+2, height = length(block)+1, useDingbats=FALSE)
 
   plot_class<-plot_dt[Nham_aa==1,.(sum_count=sum(mean_count)),by=.(phenotype,real_bg)]
-  p <- ggplot2::ggplot(plot_class[Nham_aa==1],ggplot2::aes(x = factor(phenotype),y=sum_count, fill =factor(real_bg))) +
+  p <- ggplot2::ggplot(plot_class,ggplot2::aes(x = factor(phenotype),y=sum_count, fill =factor(real_bg))) +
     ggplot2::geom_bar(stat = "identity", position = "fill") +
     ggplot2::xlab("experiment") +
     ggplot2::ylab("Percentage of reads with mutations") +
