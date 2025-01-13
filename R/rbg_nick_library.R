@@ -12,7 +12,7 @@ rbg_nick_library<-function(
     output_dir="./",
     block=c('1','2','3')
 ){
-  input_files <- file.path(unlist(input_dir_list), sapply(input_dir_list, list.files, pattern = "*Q20_variant_data_merge.tsv"))
+  input_files <- file.path(unlist(input_dir_list), sapply(input_dir_list, list.files, pattern = "*_variant_data_merge.tsv"))
   dir.create(output_dir)
   num<-length(input_dir_list)/length(block)-1
   #Load count tables
