@@ -48,7 +48,7 @@ rbg_synthetic_library<-function(
     "N" = c("a", "c", "g", "t")
   )
 
-  input_files <- file.path(unlist(input_dir_list), sapply(input_dir_list, list.files, pattern = "*Q20_variant_data_merge.tsv"))
+  input_files <- file.path(unlist(input_dir_list), sapply(input_dir_list, list.files, pattern = "*_variant_data_merge.tsv"))
   dir.create(output_dir)
   #Load count tables
   count_list <- lapply(input_files, 'fread')
