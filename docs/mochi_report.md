@@ -35,7 +35,7 @@ pre_nor<-nor_predict(
     abundance4...
 )
 # compare observed and predicted fitness
-plot2D_vresus(
+plot2D_versus(
     input=pre_nor,
     assay="assay_name",
     block=1

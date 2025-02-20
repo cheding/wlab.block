@@ -10,7 +10,7 @@
 #' @return Nothing
 #' @export
 #' @import data.table
-plot2D_vresus<-function(
+plot2D_versus<-function(
     input,
     assay,
     block
