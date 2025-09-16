@@ -7,12 +7,14 @@
 #'
 #' @param required_file path to "replicates.RData"
 #' @param wt_aa wt amino acid sequence
+#' @param max_sigma upper limit of allowable sigma
 #'
 #' @export
 #' @import data.table
 aa_complement<-function(
     required_file,
-    wt_aa
+    wt_aa,
+    max_sigma=NULL
 ){
   if(!file.exists(required_file)){
     stop(paste0("Required files do not exist."), call. = FALSE)
@@ -27,6 +29,10 @@ aa_complement<-function(
   sup1<-substr(wt_aa,1,start-1)
   sup2<-substr(wt_aa,start+nchar(aa),nchar(wt_aa))
   all_variants[,aa_seq:=paste0(sup1,aa_seq,sup2)]
+  #filter out low quality data
+  if(!is.null(max_sigma)){
+    all_variants=all_variants[sigma<max_sigma]
+  }
   #save file
   fullseq<-gsub(".RData$","_fullseq.RData",required_file)
   save(all_variants,doubles,singles,synonymous,wildtype,file = required_file)

@@ -4,12 +4,14 @@
 \alias{aa_complement}
 \title{A Function to complete the aa sequence}
 \usage{
-aa_complement(required_file, wt_aa)
+aa_complement(required_file, wt_aa, max_sigma = NULL)
 }
 \arguments{
 \item{required_file}{path to "replicates.RData"}
 
 \item{wt_aa}{wt amino acid sequence}
+
+\item{max_sigma}{upper limit of allowable sigma}
 }
 \description{
 This function allow you complete aa sequence in "replicates.RData"
