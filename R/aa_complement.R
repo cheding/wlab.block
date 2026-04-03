@@ -32,8 +32,8 @@ aa_complement<-function(
   merge_data[["all_variants"]]<-all_variants
   merge_data[["synomous"]]<-synonymous
   all_variants<-dplyr::bind_rows(merge_data,.id=NULL)
-  all_variants<-unique(all_variants)
   all_variants[,aa_seq:=paste0(sup1,aa_seq,sup2)]
+  all_variants<-unique(all_variants)
   #filter out low quality data
   if(!is.null(max_sigma)){
     all_variants=all_variants[sigma<max_sigma]
