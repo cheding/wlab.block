@@ -28,11 +28,11 @@ aa_complement<-function(
   #fill both sides
   sup1<-substr(wt_aa,1,start-1)
   sup2<-substr(wt_aa,start+nchar(aa),nchar(wt_aa))
-  all_variants[,aa_seq:=paste0(sup1,aa_seq,sup2)]
   merge_data<-list()
   merge_data[["all_variants"]]<-all_variants
   merge_data[["synomous"]]<-synonymous
   all_variants<-dplyr::bind_rows(merge_data,.id=NULL)
+  all_variants[,aa_seq:=paste0(sup1,aa_seq,sup2)]
   #filter out low quality data
   if(!is.null(max_sigma)){
     all_variants=all_variants[sigma<max_sigma]
