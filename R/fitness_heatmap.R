@@ -52,7 +52,7 @@ fitness_heatmap<-function(
                    axis.title.x = ggplot2::element_text(size =12,face = "plain"),
                    axis.title.y = ggplot2::element_text(size =12,face = "plain"),
                    axis.text.x = ggplot2::element_text(size =12, angle=90, vjust=1, hjust=1),
-                   axis.text.y = ggplot2::element_text(family="Courier",angle=90,size=9.5, vjust = .5,hjust = .5,margin=ggplot2::margin(0,-0.5,0,0,"mm")),
+                   axis.text.y = ggplot2::element_text(angle=90,size=9.5, vjust = .5,hjust = .5,margin=ggplot2::margin(0,-0.5,0,0,"mm")),
                    legend.key.height= ggplot2::unit(3.1, 'mm'),
                    legend.key.width = ggplot2::unit(4, 'mm'),
                    legend.key.size = ggplot2::unit(1,"mm"),
