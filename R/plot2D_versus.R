@@ -33,9 +33,9 @@ plot2D_versus<-function(
     ggplot2::geom_hline(yintercept=0)+
     ggplot2::geom_vline(xintercept=0)+
     ggplot2::geom_abline(intercept = 0,slope=1,linetype="dashed")+
-    ggplot2::annotate("text",x=-0.8,y=0.3,
-                      label = paste0("R\u00B2 = ",round(summary(lm_mochi)$r.squared,2)),
-                      size=7*0.35 )+
+    ggpp::geom_text_npc(aes(npcx = 0.2, npcy = 0.8, 
+                            label = paste0("R\u00B2 = ",round(summary(lm_mochi)$r.squared,2)),
+                            size=7*0.35 ))+
     ggplot2::theme_classic()+
     ggplot2::xlab("Observed fitness")+
     ggplot2::ylab("Predicted fitness")+
