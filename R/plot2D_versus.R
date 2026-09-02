@@ -16,15 +16,15 @@ plot2D_versus<-function(
     block
 ){
   pre_nor<-input
-
+  
   if(assay=="Abundance"){
     nb=0
   }else{
     nb<-which(colnames(pre_nor)==paste0("Binding1_",assay))-which(colnames(pre_nor)=="Abundance1")
   }
-
+  
   phenotypen<-block+nb
-
+  
   lm_mochi<-lm(pre_nor_fitness~ob_nor_fitness,pre_nor[phenotype==phenotypen,])
   ggplot2::ggplot()+
     ggplot2::stat_binhex(data=pre_nor[phenotype==phenotypen,],ggplot2::aes(x=ob_nor_fitness,y=pre_nor_fitness),
@@ -33,9 +33,9 @@ plot2D_versus<-function(
     ggplot2::geom_hline(yintercept=0)+
     ggplot2::geom_vline(xintercept=0)+
     ggplot2::geom_abline(intercept = 0,slope=1,linetype="dashed")+
-    ggpp::geom_text_npc(aes(npcx = 0.2, npcy = 0.8, 
+    ggpp::geom_text_npc(aes(npcx = 0.1, npcy = 0.9, 
                             label = paste0("R\u00B2 = ",round(summary(lm_mochi)$r.squared,2))),
-                        size = 8, size.unit = "pt")+
+                        size = 3)+
     ggplot2::theme_classic()+
     ggplot2::xlab("Observed fitness")+
     ggplot2::ylab("Predicted fitness")+
