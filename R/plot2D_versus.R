@@ -34,7 +34,8 @@ plot2D_versus<-function(
     ggplot2::geom_vline(xintercept=0)+
     ggplot2::geom_abline(intercept = 0,slope=1,linetype="dashed")+
     ggpp::geom_text_npc(aes(npcx = 0.2, npcy = 0.8, 
-                            label = paste0("R\u00B2 = ",round(summary(lm_mochi)$r.squared,2))))+
+                            label = paste0("R\u00B2 = ",round(summary(lm_mochi)$r.squared,2))),
+                        size = 8, size.unit = "pt")+
     ggplot2::theme_classic()+
     ggplot2::xlab("Observed fitness")+
     ggplot2::ylab("Predicted fitness")+
