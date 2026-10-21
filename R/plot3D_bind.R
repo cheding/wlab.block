@@ -61,10 +61,10 @@ plot3D_bind<-function(
   )
 
   Cairo::CairoPDF(file = output_file)
-  plot3D::persp3D(x=binding_energy_grid1*RT,
-                  y=folding_energy_grid1*RT,
+  plot3D::persp3D(x=folding_energy_grid1*RT,
+                  y=binding_energy_grid1*RT,
                   z=matrix(data=pred_fitness_dt_binding[,observed_fitness],
-                           nrow=length(binding_energy_grid1),ncol=length(folding_energy_grid1)),
+                           nrow=length(folding_energy_grid1),ncol=length(binding_energy_grid1)),
                   r=2, shade=0.4, axes=TRUE,scale=TRUE, box=TRUE, nticks=5, ticktype="detailed",
                   colvar=F, col="white", alpha = 0, border="#F4270C", lwd=0.2,
                   cex.lab=1,cex.main=1,cex.axis=1,
