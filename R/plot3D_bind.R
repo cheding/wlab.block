@@ -72,8 +72,8 @@ plot3D_bind<-function(
                   ylab="ddG Binding",
                   zlab="Binding(observed)"
   )
-  plot3D::scatter3D(x=ddg_merge1[,fold_1_additive_trait1*RT],
-                    y=ddg_merge1[,fold_1_additive_trait0*RT],
+  plot3D::scatter3D(x=ddg_merge1[,fold_1_additive_trait0*RT],
+                    y=ddg_merge1[,fold_1_additive_trait1*RT],
                     z=ddg_merge1[,fitness],
                     add = T, col = "black", alpha = 0.2, cex = 0.2
   )
